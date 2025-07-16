@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>URL Fetcher</title>
+</head>
+<body>
+  <input type="url" id="urlInput" placeholder="Enter URL">
+  <button id="fetchButton">Fetch URL</button>
+  <div id="displayArea"></div>
+
+  <script>
+    document.getElementById('fetchButton').addEventListener('click', function() {
+      const url = document.getElementById('urlInput').value;
+      const displayArea = document.getElementById('displayArea');
+
+      fetch('url', {
+        headers: {
+        'ngrok-skip-browser-warning': 'true'
+            }
+          })
+
+     fetch('https://api.allorigins.win/get?url=' + encodeURIComponent(url))
+    
+  .then(response => response.json())
+  .then(data => {
+    displayArea.innerText= data.contents;
+  })
+    });
+  </script>
+</body>
+</html>
